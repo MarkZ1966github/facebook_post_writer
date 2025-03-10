@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Post Writer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <h1>Facebook Post Writer</h1>
+            <p class="lead">AI-powered content creation for engaging Facebook posts</p>
+        </div>
+
+        <form id="postForm">
+            <div class="mb-3">
+                <label for="topic" class="form-label">Keyword/Keyphrase or Topic</label>
+                <input type="text" class="form-control" id="topic" placeholder="What should the post be about?" required>
+                <div class="form-text">Enter the main topic or keyword for your post (e.g., "digital marketing tips", "healthy breakfast ideas")</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="writeStyle" class="form-label">Write Like</label>
+                <input type="text" class="form-control" id="writeStyle" placeholder="e.g., Gary Vaynerchuk, my personal blog, etc.">
+                <div class="form-text">Specify a writing style or voice to match (optional). This could be a person, brand, or your own style.</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="postGoal" class="form-label">Post Goal</label>
+                <select class="form-select" id="postGoal">
+                    <option value="engagement">Maximize Engagement (comments, likes, shares)</option>
+                    <option value="link">Drive Traffic to Link (CTA in comment)</option>
+                    <option value="general">General Content</option>
+                </select>
+            </div>
+
+            <div class="mb-3" id="ctaLinkContainer">
+                <label for="ctaLink" class="form-label">CTA Link (for link in comment)</label>
+                <input type="text" class="form-control" id="ctaLink" placeholder="https://your-link-here.com">
+                <div class="form-text">Enter the URL you want to promote. This will be included in a follow-up comment to your post.</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="contentLength" class="form-label">Content Length</label>
+                <select class="form-select" id="contentLength">
+                    <option value="short">Short (concise and to the point)</option>
+                    <option value="medium" selected>Medium (balanced approach)</option>
+                    <option value="long">Long (detailed and comprehensive)</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Generate Facebook Post</button>
+        </form>
+
+        <div class="loading" id="loading">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p>Creating your Facebook post...</p>
+        </div>
+
+        <div id="resultContainer" style="display: none;">
+            <h4 class="mt-4">Your Facebook Post:</h4>
+            <div class="post-preview" id="postPreview">
+                <button class="copy-btn" id="copyPost">Copy</button>
+                <div id="postContent"></div>
+            </div>
+            
+            <div id="commentContainer" style="display: none;">
+                <h5 class="mt-4">Follow-up Comment (with CTA):</h5>
+                <div class="comment-preview" id="commentPreview">
+                    <button class="copy-btn" id="copyComment">Copy</button>
+                    <div id="commentContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

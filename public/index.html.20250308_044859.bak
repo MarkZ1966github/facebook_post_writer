@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Post Writer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 2rem;
+            background-color: #f0f2f5;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1877f2;
+        }
+        .form-label {
+            font-weight: 600;
+            color: #444;
+        }
+        .btn-primary {
+            background-color: #1877f2;
+            border-color: #1877f2;
+        }
+        .btn-primary:hover {
+            background-color: #166fe5;
+            border-color: #166fe5;
+        }
+        .post-preview {
+            background-color: #f0f2f5;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 4px solid #1877f2;
+        }
+        .comment-preview {
+            background-color: #f0f2f5;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+            border-left: 4px solid #42b72a;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .spinner-border {
+            color: #1877f2;
+        }
+        .copy-btn {
+            cursor: pointer;
+            float: right;
+            color: #1877f2;
+            background: transparent;
+            border: none;
+            font-size: 0.9rem;
+        }
+        .copy-btn:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <h1>Facebook Post Writer</h1>
+            <p class="lead">AI-powered content creation for engaging Facebook posts</p>
+        </div>
+
+        <form id="postForm">
+            <div class="mb-3">
+                <label for="topic" class="form-label">Keyword/Keyphrase or Topic</label>
+                <input type="text" class="form-control" id="topic" placeholder="What should the post be about?" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="writeStyle" class="form-label">Write Like</label>
+                <input type="text" class="form-control" id="writeStyle" placeholder="e.g., Gary Vaynerchuk, my personal blog, etc.">
+            </div>
+
+            <div class="mb-3">
+                <label for="postGoal" class="form-label">Post Goal</label>
+                <select class="form-select" id="postGoal">
+                    <option value="engagement">Maximize Engagement (comments, likes, shares)</option>
+                    <option value="link">Drive Traffic to Link (CTA in comment)</option>
+                    <option value="general">General Content</option>
+                </select>
+            </div>
+
+            <div class="mb-3" id="ctaLinkContainer">
+                <label for="ctaLink" class="form-label">CTA Link (for link in comment)</label>
+                <input type="text" class="form-control" id="ctaLink" placeholder="https://your-link-here.com">
+            </div>
+
+            <div class="mb-3">
+                <label for="contentLength" class="form-label">Content Length</label>
+                <select class="form-select" id="contentLength">
+                    <option value="short">Short (concise and to the point)</option>
+                    <option value="medium" selected>Medium (balanced approach)</option>
+                    <option value="long">Long (detailed and comprehensive)</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Generate Facebook Post</button>
+        </form>
+
+        <div class="loading" id="loading">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p>Creating your Facebook post...</p>
+        </div>
+
+        <div id="resultContainer" style="display: none;">
+            <h4 class="mt-4">Your Facebook Post:</h4>
+            <div class="post-preview" id="postPreview">
+                <button class="copy-btn" id="copyPost">Copy</button>
+                <div id="postContent"></div>
+            </div>
+            
+            <div id="commentContainer" style="display: none;">
+                <h5 class="mt-4">Follow-up Comment (with CTA):</h5>
+                <div class="comment-preview" id="commentPreview">
+                    <button class="copy-btn" id="copyComment">Copy</button>
+                    <div id="commentContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
